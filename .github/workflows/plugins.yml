@@ -11,6 +11,8 @@ on:
       - '.github/workflows/plugins.yml'
       - 'src/**'
       - 'packaging/**'
+    paths-ignore:
+      - 'src/.veracode-exclusions'
   push:
     branches:
       - develop
@@ -19,12 +21,28 @@ on:
       - '.github/workflows/plugins.yml'
       - 'src/**'
       - 'packaging/**'
+    paths-ignore:
+      - 'src/.veracode-exclusions'
     tags:
       - centreon-plugins-*
 
 jobs:
   get-environment:
     uses: ./.github/workflows/get-environment.yml
+
+  veracode-analysis:
+    needs: [get-environment]
+    uses: ./.github/workflows/veracode-analysis.yml
+    with:
+      module_name: centreon-plugins
+      module_directory: src
+      major_version: ${{ needs.get-environment.outputs.version }}
+      minor_version: ${{ needs.get-environment.outputs.release }}
+      stability: ${{ needs.get-environment.outputs.stability }}
+    secrets:
+      veracode_api_id: ${{ secrets.VERACODE_API_ID_COLL }}
+      veracode_api_key: ${{ secrets.VERACODE_API_KEY_COLL }}
+      veracode_srcclr_token: ${{ secrets.VERACODE_SRCCLR_TOKEN }}
 
   get-plugins:
     runs-on: ubuntu-22.04

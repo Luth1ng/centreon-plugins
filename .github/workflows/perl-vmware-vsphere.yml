@@ -9,12 +9,16 @@ on:
   pull_request:
     paths:
       - 'dependencies/perl-vmware-vsphere/**'
+    paths-ignore:
+      - 'dependencies/perl-vmware-vsphere/.veracode-exclusions'
   push:
     branches:
       - develop
       - master
     paths:
       - 'dependencies/perl-vmware-vsphere/**'
+    paths-ignore:
+      - 'dependencies/perl-vmware-vsphere/.veracode-exclusions'
     tags:
       - perl-vmware-vsphere-*
 
@@ -23,6 +27,20 @@ jobs:
     uses: ./.github/workflows/get-environment.yml
     with:
       version_file: connectors/vmware/src/centreon/script/centreon_vmware.pm
+
+  veracode-analysis:
+    needs: [ get-environment ]
+    uses: ./.github/workflows/veracode-analysis.yml
+    with:
+      module_name: centreon-perl-vmware-vsphere
+      module_directory: dependencies/perl-vmware-vsphere
+      major_version: ${{ needs.get-environment.outputs.version }}
+      minor_version: ${{ needs.get-environment.outputs.release }}
+      stability: ${{ needs.get-environment.outputs.stability }}
+    secrets:
+      veracode_api_id: ${{ secrets.VERACODE_API_ID_COLL }}
+      veracode_api_key: ${{ secrets.VERACODE_API_KEY_COLL }}
+      veracode_srcclr_token: ${{ secrets.VERACODE_SRCCLR_TOKEN }}
 
   get-sources:
     runs-on: ubuntu-22.04
