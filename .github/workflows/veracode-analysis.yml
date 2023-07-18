@@ -185,7 +185,7 @@ jobs:
           VERACODE_API_SECRET: "${{ secrets.veracode_api_key }}"
 
         # Action forked as API call hardcode '.com' route
-        uses: sc979/veracode-sandboxes-helper@v0.1
+        uses: sc979/veracode-sandboxes-helper@v0.2
         with:
           activity: "promote-latest-scan"
           app-name: "${{ inputs.module_name }}"
