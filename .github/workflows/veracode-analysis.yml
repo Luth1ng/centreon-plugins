@@ -138,6 +138,11 @@ jobs:
           aws s3 cp "/tmp/filtered_results.json" "$BUCKET/filtered_results.json"
           aws s3 cp "/tmp/results.json" "$BUCKET/results.json"
 
+      # delete artifact
+      - uses: geekyeggo/delete-artifact@v2
+        with:
+          name: "Veracode Pipeline-Scan Results"
+
   policy-scan:
     needs: [build]
     name: Run a sandbox scan
