@@ -11,8 +11,6 @@ on:
       - '.github/workflows/plugins.yml'
       - 'src/**'
       - 'packaging/**'
-    paths-ignore:
-      - 'src/.veracode-exclusions'
   push:
     branches:
       - develop
@@ -21,8 +19,6 @@ on:
       - '.github/workflows/plugins.yml'
       - 'src/**'
       - 'packaging/**'
-    paths-ignore:
-      - 'src/.veracode-exclusions'
     tags:
       - centreon-plugins-*
 

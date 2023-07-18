@@ -9,16 +9,12 @@ on:
   pull_request:
     paths:
       - 'dependencies/perl-vmware-vsphere/**'
-    paths-ignore:
-      - 'dependencies/perl-vmware-vsphere/.veracode-exclusions'
   push:
     branches:
       - develop
       - master
     paths:
       - 'dependencies/perl-vmware-vsphere/**'
-    paths-ignore:
-      - 'dependencies/perl-vmware-vsphere/.veracode-exclusions'
     tags:
       - perl-vmware-vsphere-*
 

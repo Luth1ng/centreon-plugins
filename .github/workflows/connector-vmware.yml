@@ -10,8 +10,6 @@ on:
     paths:
       - 'connectors/vmware/src/**'
       - 'connectors/vmware/packaging/**'
-    paths-ignore:
-      - 'connectors/vmware/.veracode-exclusions'
   push:
     branches:
       - develop
@@ -19,8 +17,6 @@ on:
     paths:
       - 'connectors/vmware/src/**'
       - 'connectors/vmware/packaging/**'
-    paths-ignore:
-      - 'connectors/vmware/.veracode-exclusions'
     tags:
       - centreon-connector-vmware-*
 
