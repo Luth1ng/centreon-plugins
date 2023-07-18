@@ -121,7 +121,7 @@ jobs:
       - name: Save baseline files
         # only baseline files not generated from a development branch are saved
         if: success() && needs.build.outputs.development_stage == 'Development'
-        ## if: needs.build.outputs.development_stage != 'Development'
+        ## if: success() && needs.build.outputs.development_stage != 'Development'
         run: |
           #BRANCHES=(develop master dev-${{ inputs.major_version }}.x ${{ inputs.major_version }}.x)
           #for BRANCH in "${BRANCHES[@]}"; do
