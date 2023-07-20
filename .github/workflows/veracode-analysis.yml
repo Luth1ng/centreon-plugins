@@ -36,6 +36,11 @@ jobs:
       display_summary: ${{ steps.routing-mode.outputs.display_summary }}
 
     steps:
+      - name: check what
+        continue-on-error: ${{ vars.VERACODE_CONTINUE_ON_ERROR == 'true' && true || false }}
+        run: |
+          echo "continue-on-error: ${{ vars.VERACODE_CONTINUE_ON_ERROR == 'true' && true || false }}"
+
       - uses: actions/checkout@v3
 
       - name: Generate binary file

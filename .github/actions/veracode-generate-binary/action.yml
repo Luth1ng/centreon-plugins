@@ -21,24 +21,6 @@ runs:
         fi
       shell: bash
 
-
-    - name: I produce a boolean output
-      id: output_producer
-      run: |
-        echo "boolean_output=${{ toJSON(true) }} >> GITHUB_ENV
-        #- name: I run conditionally on that boolean
-        #  if: fromJSON(steps.output_producer.outputs.boolean_output)
-        #  shell: bash
-        #  run: |
-        #    echo ${{ steps.output_producer.outputs.boolean_output }}
-      shell: bash
-
-    - name: check what
-      continue-on-error: ${{ vars.VERACODE_CONTINUE_ON_ERROR == 'true' && true || false }}
-      run: |
-        echo "continue-on-error: ${{ vars.VERACODE_CONTINUE_ON_ERROR) }}"
-      shell: bash
-
     - name: Exclude development files
       run: |
         cd ${{ inputs.module_directory }}
