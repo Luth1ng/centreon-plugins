@@ -34,9 +34,9 @@ runs:
       shell: bash
 
     - name: check what
-      continue-on-error: fromJSON(vars.VERACODE_CONTINUE_ON_ERROR)
+      continue-on-error: ${{ vars.VERACODE_CONTINUE_ON_ERROR == 'true' && true || false }}
       run: |
-        echo "continue-on-error: fromJSON(vars.VERACODE_CONTINUE_ON_ERROR)"
+        echo "continue-on-error: ${{ vars.VERACODE_CONTINUE_ON_ERROR) }}"
       shell: bash
 
     - name: Exclude development files
