@@ -147,14 +147,7 @@ jobs:
         id: output_producer
         shell: bash
         run: |
-          if [[ 101 > 100 ]]; then
-            i=true
-          else
-            i=false
-          fi
-          echo "$i"
-          echo "${{ toJSON($i) }}"
-          #echo "::set-output name=boolean_output::${{ toJSON($i) }}"
+          echo "::set-output name=boolean_output::${{ toJSON(true) }}"
       #- name: I run conditionally on that boolean
       #  if: fromJSON(steps.output_producer.outputs.boolean_output)
       #  shell: bash
