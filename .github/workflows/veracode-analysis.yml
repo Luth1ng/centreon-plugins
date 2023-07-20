@@ -147,20 +147,20 @@ jobs:
         id: output_producer
         shell: bash
         run: |
-          if [[ 101 > 100 ]]; then i=true; else i=false; fi
-          echo "::set-output name=boolean_output::${{ toJSON($i) }}"
-          echo "::set-output name=integer_output::${{ toJSON($i) }}"
-      - name: I run conditionally on that boolean
-        if: fromJSON(steps.output_producer.outputs.boolean_output)
-        shell: bash
-        run: |
-          echo "Ran successfully!"
-          echo ${{ steps.output_producer.outputs.boolean_output }}
-      - name: I run always
-        if: always()
-        shell: bash
-        run: |
-          echo ${{ fromJSON(steps.output_producer.outputs.integer_output) }}
+          if [[ 101 > 100 ]]; then
+            i=true
+          else
+            i=false
+          fi
+          echo "$i"
+          echo "${{ toJSON($i) }}"
+          #echo "::set-output name=boolean_output::${{ toJSON($i) }}"
+      #- name: I run conditionally on that boolean
+      #  if: fromJSON(steps.output_producer.outputs.boolean_output)
+      #  shell: bash
+      #  run: |
+      #    echo "Ran successfully!"
+      #    echo ${{ steps.output_producer.outputs.boolean_output }}
 
   policy-scan:
     needs: [build]
