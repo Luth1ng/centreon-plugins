@@ -30,7 +30,6 @@ runs:
         #  if: fromJSON(steps.output_producer.outputs.boolean_output)
         #  shell: bash
         #  run: |
-        #    echo "Ran successfully!"
         #    echo ${{ steps.output_producer.outputs.boolean_output }}
       shell: bash
 
