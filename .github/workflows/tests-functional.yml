@@ -69,13 +69,13 @@ jobs:
         run: |
           pip3.9 install pip wheel --upgrade
           pip3.9 install robotframework
-          pip3.9 install snmpsim-lextudio
+          pip3.9 install snmpsim
         shell: bash
 
       - name: Run SNMP Simulator
         run: |
           cd tests/resources/snmp/
-          snmpsim-command-responder --data-dir=. --agent-udpv4-endpoint=127.0.0.1:2024 --process-user=root --process-group=nogroup &
+          snmpsimd --data-dir=. --agent-udpv4-endpoint=127.0.0.1:2024 --process-user=root --process-group=nogroup &
           sleep 5
         shell: bash
 
